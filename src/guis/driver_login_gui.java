@@ -52,30 +52,41 @@ public class driver_login_gui extends BaseFrame{
 
         // Login Button
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(150, 230, 100, 30);
+        loginButton.setBounds(100, 230, 100, 30);
         loginButton.setFont(new Font("Dialog", Font.BOLD, 20));
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String driver_name = driverNameField.getText();
-
                 String password = String.valueOf(passwordField.getPassword());
-
                 Driver driver = MyJDBC.validateDriverLogin(driver_name, password);
 
-                if (driver != null){
+                if (driver != null) {
                     driver_login_gui.this.dispose();
-
                     driver_info_gui driver_info_gui = new driver_info_gui(driver);
                     driver_info_gui.setVisible(true);
-
-                    JOptionPane.showMessageDialog(driver_info_gui, "login succesful");
-                }else{
+                    JOptionPane.showMessageDialog(driver_info_gui, "login successful");
+                } else {
                     JOptionPane.showMessageDialog(driver_login_gui.this, "Login Failed");
                 }
             }
         });
         add(loginButton);
+
+// Back Button
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(220, 230, 100, 30);
+        backButton.setFont(new Font("Dialog", Font.BOLD, 20));
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                driver_login_gui.this.dispose();
+                // Open previous window (if any)
+                // For example:
+                new entry_gui().setVisible(true);
+            }
+        });
+        add(backButton);
 
         // Register Label with a clickable link
         JLabel registerLabel = new JLabel("<html><a href='#'>Don't have an account? Register here.</a></html>");

@@ -52,7 +52,7 @@ public class team_login_gui extends BaseFrame{
 
         // Login Button
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(150, 230, 100, 30);
+        loginButton.setBounds(100, 230, 100, 30);
         loginButton.setFont(new Font("Dialog", Font.BOLD, 20));
         loginButton.addActionListener(new ActionListener() {
             @Override
@@ -76,6 +76,20 @@ public class team_login_gui extends BaseFrame{
             }
         });
         add(loginButton);
+
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(220, 230, 100, 30);
+        backButton.setFont(new Font("Dialog", Font.BOLD, 20));
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                team_login_gui.this.dispose();
+                // Open previous window (if any)
+                // For example:
+                new entry_gui().setVisible(true);
+            }
+        });
+        add(backButton);
 
         JLabel registerLabel = new JLabel("<html><a href='#'>Don't have an account? Register here.</a></html>");
         registerLabel.setBounds(0, 410, getWidth() - 10, 30);
