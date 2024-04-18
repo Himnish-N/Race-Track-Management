@@ -31,7 +31,8 @@ public class spectator_gui extends BaseFrame {
         // Refresh Button
         JButton refreshButton = new JButton("Refresh");
         refreshButton.setFont(new Font("Arial", Font.BOLD, 16));
-        refreshButton.setBackground(Color.BLUE);
+        refreshButton.setBackground(new Color(111, 173, 94));
+
         refreshButton.setForeground(Color.WHITE);
         refreshButton.addActionListener(new ActionListener() {
             @Override
@@ -44,7 +45,7 @@ public class spectator_gui extends BaseFrame {
         // Buy Ticket Button
         JButton buyTicketButton = new JButton("Buy Ticket");
         buyTicketButton.setFont(new Font("Arial", Font.BOLD, 16));
-        buyTicketButton.setBackground(Color.GREEN);
+        buyTicketButton.setBackground(Color.getHSBColor(0, 173, 179));
         buyTicketButton.setForeground(Color.WHITE);
         buyTicketButton.addActionListener(new ActionListener() {
             @Override
@@ -53,6 +54,23 @@ public class spectator_gui extends BaseFrame {
             }
         });
         buttonPanel.add(buyTicketButton, BorderLayout.SOUTH);
+
+        // back button
+        JButton backButton = new JButton("Back");
+        // backButton.setBounds(20, 20, 80, 30);
+        backButton.setFont(new Font("Arial", Font.BOLD, 16));
+        backButton.setBackground(new Color(209, 50, 53));
+        backButton.setForeground(Color.WHITE);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                spectator_gui.this.dispose();
+                // Open previous window (if any)
+                // For example:
+                new entry_gui().setVisible(true);
+            }
+        });
+        buttonPanel.add(backButton, BorderLayout.WEST);
 
         // Labels for Race Info and Driver Info
         JLabel raceLabel = new JLabel("Race Info");
