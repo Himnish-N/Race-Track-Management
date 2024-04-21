@@ -3,6 +3,8 @@ import db_objs.Driver;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class driver_info_gui extends BaseFrame {
     public driver_info_gui(Driver driver) {
@@ -40,17 +42,40 @@ public class driver_info_gui extends BaseFrame {
         add(scoreLabel);
 
         // Edit details button
-        JButton editDetailsButton = new JButton("Edit Details");
-        editDetailsButton.setBounds(10, 190, getWidth() - 20, 30);
-        editDetailsButton.setFont(new Font("Dialog", Font.BOLD, 16));
-        add(editDetailsButton);
+//        JButton editDetailsButton = new JButton("Edit Details");
+//        editDetailsButton.setBounds(10, 190, getWidth() - 20, 30);
+//        editDetailsButton.setFont(new Font("Dialog", Font.BOLD, 16));
+//        add(editDetailsButton);
+
+        JButton regButton = new JButton("Register for race !");
+        regButton.setBounds(10, 260, getWidth() - 20, 30);
+        regButton.setFont(new Font("Dialog", Font.BOLD, 16));
+        regButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                driver_info_gui.this.dispose();
+
+                new race_reg_gui().setVisible(true);
+            }
+        });
+        add(regButton);
 
         // Logout button
         JButton logoutButton = new JButton("Logout");
         logoutButton.setBounds(10, 230, getWidth() - 20, 30);
         logoutButton.setFont(new Font("Dialog", Font.BOLD, 16));
+        logoutButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                driver_info_gui.this.dispose();
+
+                new driver_login_gui().setVisible(true);
+            }
+        });
         add(logoutButton);
 
-        // Note: Implement action listeners for buttons to perform actual functions
+
+
+
     }
 }

@@ -25,6 +25,8 @@ public class App_launcher{
 
 //                new  admin_window_gui().setVisible(true);
 //                new update_race_info_gui().setVisible(true);
+//                new race_reg_gui().setVisible(true);
+//                new ticket_purchase_gui().setVisible(true);
             }
         });
     }

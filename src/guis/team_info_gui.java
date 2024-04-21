@@ -3,6 +3,8 @@ import db_objs.Team;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class team_info_gui extends BaseFrame {
     public team_info_gui(Team team) {
@@ -43,10 +45,18 @@ public class team_info_gui extends BaseFrame {
         editDetailsButton.setHorizontalAlignment(SwingConstants.CENTER);
         add(editDetailsButton);
 
+        // Logout button
         JButton logoutButton = new JButton("Logout");
-        logoutButton.setBounds(10, 290, getWidth() - 20, 30);
+        logoutButton.setBounds(10, 230, getWidth() - 20, 30);
         logoutButton.setFont(new Font("Dialog", Font.BOLD, 16));
-        add(logoutButton);
+        logoutButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                team_info_gui.this.dispose();
+
+                new driver_login_gui().setVisible(true);
+            }
+        });
         // The password field is generally not displayed in a GUI for security reasons
         // If you need to allow the manager to change the password, you would
         // add components to facilitate that instead of displaying the current password

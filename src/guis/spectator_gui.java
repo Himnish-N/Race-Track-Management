@@ -50,7 +50,9 @@ public class spectator_gui extends BaseFrame {
         buyTicketButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                generateTicketPopup();
+                dispose();
+
+                new ticket_purchase_gui().setVisible(true);
             }
         });
         buttonPanel.add(buyTicketButton, BorderLayout.SOUTH);

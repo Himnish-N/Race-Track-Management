@@ -7,10 +7,32 @@ import java.sql.SQLException;
 
 
 
+//public class MyJDBC {
+//    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/race_manage";
+//    private static final String DB_USERNAME = "root";
+//    private static final String DB_PASSWORD = "0802";
+
 public class MyJDBC {
+    private static MyJDBC instance;
     private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/race_manage";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "0802";
+
+    // Private constructor to prevent instantiation
+    private MyJDBC() {}
+
+    // Public method to get the instance
+    public static MyJDBC getInstance() {
+        if (instance == null) {
+            synchronized (MyJDBC.class) {
+                if (instance == null) {
+                    instance = new MyJDBC();
+                }
+            }
+        }
+        return instance;
+    }
+
 
     public static Admin validateAdminLogin(String admin_name, String admin_password){
         String query = "SELECT * FROM admins WHERE admin_name = ? AND admin_password = ?";
@@ -287,6 +309,20 @@ public class MyJDBC {
         return driverInfoList;
     }
 
+    public static boolean race_reg(int driver_id, String driverName, String teamName) {
+        String query = "INSERT INTO race_reg (driver_id, driver_name, driver_team) VALUES (?, ?, ?)";
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1,driver_id);
+            preparedStatement.setString(2, driverName);
+            preparedStatement.setString(3, teamName);
+            int result = preparedStatement.executeUpdate();
+            return result > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }
 
