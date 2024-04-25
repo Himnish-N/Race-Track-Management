@@ -15,7 +15,7 @@ public class entry_gui extends BaseFrame {
         setLayout(new BorderLayout());  // Keep BorderLayout for the main layout
 
         // Welcome label at the top
-        JLabel welcomeLabel = new JLabel("Welcome to RACE", SwingConstants.CENTER);
+        JLabel welcomeLabel = new JLabel("RACE TRACK", SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Serif", Font.BOLD, 36));
         add(welcomeLabel, BorderLayout.NORTH);
 
